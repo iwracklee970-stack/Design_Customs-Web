@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --bg-studio: #090a0c;
+  --bg-panel: #111317;
+  --bg-input: #1a1c22;
+  --bg-hover: #22252c;
+  
+  --border-muted: #21242c;
+  --border-strong: #373c47;
+  --border-focus: #ffffff;
+  
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-dim: #6b7280;
+  /* CMYK Palette (Adjusted for aesthetics) */
+  --cmyk-cyan: #0ea5e9;
+  --cmyk-magenta: #d946ef;
+  --cmyk-yellow: #eab308;
+  --cmyk-key: #000000;
+  --cmyk-white: #ffffff;
+  
+  /* Fonts */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  
+  /* Animations */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Grid lines background for studio */
+  --studio-grid: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  
+  /* Overlay background */
+  --bg-overlay: rgba(6, 7, 9, 0.85);
+}
+
+:root.light {
+  --bg-studio: #f3f4f6;
+  --bg-panel: #ffffff;
+  --bg-input: #f9fafb;
+  --bg-hover: #e5e7eb;
+  
+  --border-muted: #e5e7eb;
+  --border-strong: #d1d5db;
+  --border-focus: #000000;
+  
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --text-dim: #9ca3af;
+  
+  --studio-grid: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  --bg-overlay: rgba(255, 255, 255, 0.75);
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-studio);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Monospace stats and inputs */
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Button & interactive components */
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+  transition: all var(--transition-fast);
+}
+
+input, select, textarea {
+  font-family: var(--font-sans);
+  background: var(--bg-input);
+  border: 1px solid var(--border-muted);
+  color: var(--text-main);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--border-focus);
+}
+
+/* Main Studio Grid */
+.studio-container {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-studio);
+}
+
+/* Header styling */
+.studio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-muted);
+  background-color: var(--bg-panel);
+  z-index: 10;
+}
+
+/* Canvas Area */
+.studio-viewport {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-studio);
+  background-image: var(--studio-grid);
+  background-size: 20px 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Left/Right Sidebar panels */
+.studio-sidebar {
+  width: 420px;
+  height: 100%;
+  background-color: var(--bg-panel);
+  border-left: 1px solid var(--border-muted);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.studio-left-bar {
+  width: 80px;
+  height: 100%;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 16px;
+}
+
+/* Control segments card */
+.control-segment {
+  border-bottom: 1px solid var(--border-muted);
+  padding: 20px;
+}
+
+.control-segment:last-child {
+  border-bottom: none;
+}
+
+.segment-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Custom sliders */
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.slider-val {
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  font-size: 0.75rem;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--bg-input);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  background: var(--text-main);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--cmyk-cyan);
+}
+
+/* CMYK Preset buttons */
+.cmyk-presets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.preset-btn {
+  height: 32px;
+  border: 1px solid var(--border-strong);
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+}
+
+.preset-btn:hover {
+  border-color: var(--text-main);
+}
+
+.preset-btn.active {
+  border-color: var(--text-main);
+  box-shadow: 0 0 4px var(--text-main);
+}
+
+/* Drag Cursor States */
+.cursor-grab {
+  cursor: grab;
+}
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* Toggle Switch */
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Interstitial Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-overlay);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  width: 90%;
+  max-width: 550px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-muted);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--bg-studio);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Color Circle Picker styling */
+.color-picker-trigger {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+.color-picker-trigger:hover {
+  transform: scale(1.15);
+  border-color: var(--text-main);
+}
+.color-picker-trigger input[type="color"] {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  opacity: 0;
+}
