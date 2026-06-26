@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layers, Disc, ArrowRight, Sun, Moon } from 'lucide-react';
 import type { Theme } from '../utils/theme';
+import logoUrl from '../../public/logo.png';
 
 interface LandingPageProps {
   onEnter: () => void;
@@ -72,7 +73,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter, theme, onTogg
         {/* Title / Logo Image */}
         <div className="animate-fade-up" style={{ marginBottom: '24px', animationDelay: '0.2s' }}>
           <img 
-            src="/logo.png" 
+            src={logoUrl} 
             alt="Design Customs Logo" 
             style={{ 
               maxWidth: '500px', 
