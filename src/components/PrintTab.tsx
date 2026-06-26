@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, PackageOpen, Tag, Info, Ruler } from 'lucide-react';
-import { ApparelType, PatternType } from '../types';
+import { ShoppingCart, PackageOpen, Ruler } from 'lucide-react';
+import { PatternType } from '../types';
 import type { CanvasState, PrintQuality, FabricType, ApparelSize, CartItem } from '../types';
 
 interface PrintTabProps {

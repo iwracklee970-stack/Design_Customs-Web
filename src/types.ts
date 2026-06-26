@@ -1,31 +1,35 @@
-export enum ApparelType {
-  T_SHIRT = 'T_SHIRT',
-  HOODIE = 'HOODIE',
-  LONG_SLEEVE = 'LONG_SLEEVE',
-  SWEATER = 'SWEATER',
-  TANK_TOP = 'TANK_TOP'
-}
+export const ApparelType = {
+  T_SHIRT: 'T_SHIRT',
+  HOODIE: 'HOODIE',
+  LONG_SLEEVE: 'LONG_SLEEVE',
+  SWEATER: 'SWEATER',
+  TANK_TOP: 'TANK_TOP'
+} as const;
+export type ApparelType = typeof ApparelType[keyof typeof ApparelType];
 
-export enum ViewSide {
-  FRONT = 'FRONT',
-  BACK = 'BACK'
-}
+export const ViewSide = {
+  FRONT: 'FRONT',
+  BACK: 'BACK'
+} as const;
+export type ViewSide = typeof ViewSide[keyof typeof ViewSide];
 
-export enum PatternType {
-  NONE = 'NONE',
-  STRIPES = 'STRIPES',
-  GRID = 'GRID',
-  DOTS = 'DOTS',
-  TEXTURE = 'TEXTURE',
-  ZIGZAG = 'ZIGZAG',
-  CROSSHATCH = 'CROSSHATCH'
-}
+export const PatternType = {
+  NONE: 'NONE',
+  STRIPES: 'STRIPES',
+  GRID: 'GRID',
+  DOTS: 'DOTS',
+  TEXTURE: 'TEXTURE',
+  ZIGZAG: 'ZIGZAG',
+  CROSSHATCH: 'CROSSHATCH'
+} as const;
+export type PatternType = typeof PatternType[keyof typeof PatternType];
 
-export enum FilterType {
-  ORIGINAL = 'ORIGINAL',
-  MONOCHROME = 'MONOCHROME',
-  DUOTONE = 'DUOTONE'
-}
+export const FilterType = {
+  ORIGINAL: 'ORIGINAL',
+  MONOCHROME: 'MONOCHROME',
+  DUOTONE: 'DUOTONE'
+} as const;
+export type FilterType = typeof FilterType[keyof typeof FilterType];
 
 export interface PatternSettings {
   id: string;

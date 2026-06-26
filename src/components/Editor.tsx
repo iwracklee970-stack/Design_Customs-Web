@@ -1156,7 +1156,7 @@ export const Editor: React.FC<EditorProps> = ({ theme, onToggleTheme }) => {
                   {Object.entries(PRESET_VECTORS).map(([key, data]) => (
                     <button
                       key={key}
-                      onClick={() => handleAddVector(key)}
+                      onClick={() => handleAddVector(key as any)}
                       style={{
                         padding: '10px',
                         border: '1px solid var(--border-strong)',

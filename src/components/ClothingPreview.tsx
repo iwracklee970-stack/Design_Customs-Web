@@ -201,7 +201,7 @@ export const ClothingPreview: React.FC<ClothingPreviewProps> = ({
   // Get current apparel paths
   const shapes = APPAREL_PATH_SHAPES[canvasState.apparelType];
   const apparelSilhouette = canvasState.viewSide === ViewSide.FRONT ? shapes.FRONT : shapes.BACK;
-  const stitches = shapes.STITCHES;
+  const stitches = shapes.STITCHES as any;
 
   // Filter out elements not belonging to the current viewSide
   const currentVectors = canvasState.vectors.filter(v => v.viewSide === canvasState.viewSide);
@@ -260,7 +260,7 @@ export const ClothingPreview: React.FC<ClothingPreviewProps> = ({
           stroke="var(--cmyk-magenta)"
           strokeWidth="2"
           style={{ pointerEvents: 'auto', cursor: 'nwse-resize' }}
-          onPointerDown={(e) => handlePointerDown(e, activeElement.id, canvasState.selectedElementType!, 'transform')}
+          onPointerDown={(e) => handlePointerDown(e, activeElement.id, canvasState.selectedElementType as 'vector' | 'image', 'transform')}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
         />
@@ -294,7 +294,7 @@ export const ClothingPreview: React.FC<ClothingPreviewProps> = ({
     const preset = PRESET_VECTORS[vec.type as keyof typeof PRESET_VECTORS];
     if (!preset) return null;
 
-    if (preset.strokeOnly) {
+    if ('strokeOnly' in preset && preset.strokeOnly) {
       return (
         <path
           d={preset.path}
